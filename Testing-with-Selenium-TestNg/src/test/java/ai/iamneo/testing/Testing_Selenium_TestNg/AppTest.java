@@ -1,5 +1,6 @@
 package ai.iamneo.testing.Testing_Selenium_TestNg;
 
+import java.util.*;
 import org.testng.annotations.Test;
 import java.util.List;
 import org.openqa.selenium.WebDriver;
@@ -21,31 +22,31 @@ public class AppTest {
 		driver = new RemoteWebDriver(new URL("http://localhost:8080"), options);
 	}
     @Test
-    public void ebaySearchProduct() {
-        // Open eBay website
+    public void ebaySP() {
+      
         driver.get(url);
 
-        // Enter the product in the search box
+        
         String productToSearch = "Apple Watches";
         driver.findElement(By.name("_nkw")).sendKeys(productToSearch);
 
-        // Select the category from the dropdown
+        
         String categoryToSelect = "Electronics";
         driver.findElement(By.id("gh-cat")).sendKeys(categoryToSelect);
 
-        // Click the Search button
+       
         driver.findElement(By.id("gh-btn")).click();
     }
 
-    // Method to print the result of the product
-    public void printProductResult() {
+	@Test
+    public void printPR() {
         List<WebElement> productResults = driver.findElements(By.xpath("//li[contains(@id, 'item')]"));
         for (WebElement productResult : productResults) {
             System.out.println(productResult.getText());
         }
     }
 
-    // Method to print Nth product (generic method)
+    @Test
     public void printNthProduct(int n) {
         List<WebElement> productResults = driver.findElements(By.xpath("//li[contains(@id, 'item')]"));
         if (n > 0 && n <= productResults.size()) {
@@ -55,7 +56,7 @@ public class AppTest {
         }
     }
 
-    // Method to print all products from the 1st page
+	@Test
     public void printAllProductsFromFirstPage() {
         List<WebElement> productResults = driver.findElements(By.xpath("//li[contains(@id, 'item')]"));
         for (WebElement productResult : productResults) {
@@ -63,7 +64,7 @@ public class AppTest {
         }
     }
 
-    // Method to print all products along with a scroll down
+    @Test
     public void printAllProductsWithScroll() {
         int pageNumber = 1;
         while (true) {
